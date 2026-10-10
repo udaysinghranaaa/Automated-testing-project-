@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="ShopFlow Reporting Skip Diagnostic" verbose="1">
+    <test name="Controlled skip status">
+        <classes>
+            <class name="com.shopflow.tests.diagnostics.ReportingSkipDiagnosticCases"/>
+        </classes>
+    </test>
+</suite>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="ShopFlow Checkout" verbose="1" output-directory="target/testng-reports/checkout">
+    <test name="Checkout module">
+        <groups><run><include name="checkout"/></run></groups>
+        <classes><class name="com.shopflow.tests.CheckoutTest"/></classes>
+    </test>
+</suite>

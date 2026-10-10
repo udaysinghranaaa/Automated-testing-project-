@@ -1,0 +1,125 @@
+name: ShopFlow Selenium CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      run_full_regression:
+        description: Run the original 49-test regression
+        required: false
+        default: true
+        type: boolean
+      run_advanced_suite:
+        description: Run the isolated advanced Selenium suite
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shopflow-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  headless-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+      - name: Set up Java 17 and Maven cache
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+      - name: Verify environment
+        run: |
+          java -version
+          mvn -version
+          google-chrome --version
+      - name: Compile tests
+        run: mvn --batch-mode --no-transfer-progress -DskipTests test-compile
+      - name: Run three-worker headless smoke
+        run: >-
+          mvn --batch-mode --no-transfer-progress
+          -Dtestng.suite=testng-parallel-smoke.xml
+          -Dtestng.output=target/testng-reports/ci-smoke
+          -Dbrowser=chrome -Dheadless=true -Dparallel.threads=3
+          exec:java
+      - name: Upload smoke evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: shopflow-smoke-${{ github.run_id }}
+          if-no-files-found: warn
+          retention-days: 14
+          path: |
+            target/testng-reports/ci-smoke/**
+            target/shopflow-reports/**
+            target/shopflow-logs/**
+
+  full-regression:
+    needs: headless-smoke
+    if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.run_full_regression)
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+      - name: Set up Java 17 and Maven cache
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+      - name: Run original headless regression
+        run: >-
+          mvn --batch-mode --no-transfer-progress
+          -Dbrowser=chrome -Dheadless=true verify
+      - name: Upload regression evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: shopflow-regression-${{ github.run_id }}
+          if-no-files-found: warn
+          retention-days: 14
+          path: |
+            target/surefire-reports/**
+            target/testng-reports/**
+            target/shopflow-reports/**
+            target/shopflow-logs/**
+
+  advanced-selenium:
+    needs: headless-smoke
+    if: github.event_name == 'workflow_dispatch' && inputs.run_advanced_suite
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+      - name: Set up Java 17 and Maven cache
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+      - name: Compile and run advanced suite
+        run: |
+          mvn --batch-mode --no-transfer-progress -DskipTests test-compile
+          mvn --batch-mode --no-transfer-progress -Dtestng.suite=testng-advanced.xml -Dtestng.output=target/testng-reports/ci-advanced -Dbrowser=chrome -Dheadless=true exec:java
+      - name: Upload advanced-suite evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: shopflow-advanced-${{ github.run_id }}
+          if-no-files-found: warn
+          retention-days: 14
+          path: |
+            target/testng-reports/ci-advanced/**
+            target/shopflow-reports/**
+            target/shopflow-logs/**

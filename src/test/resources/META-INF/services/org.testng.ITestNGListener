@@ -1,0 +1,2 @@
+com.shopflow.reporting.TestExecutionListener
+com.shopflow.core.ParallelSuiteConfigurer

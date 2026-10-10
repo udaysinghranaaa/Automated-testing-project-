@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="ShopFlow Products" verbose="1" output-directory="target/testng-reports/products">
+    <test name="Products module">
+        <groups><run><include name="products"/></run></groups>
+        <classes><class name="com.shopflow.tests.ProductTest"/></classes>
+    </test>
+</suite>

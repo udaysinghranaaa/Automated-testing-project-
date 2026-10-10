@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.1.dtd">
+<suite name="ShopFlow Parallel Reporting Failure Diagnostic" verbose="1" parallel="methods"
+       thread-count="3" data-provider-thread-count="3"
+       output-directory="target/testng-reports/parallel-reporting-failure">
+    <test name="Three controlled concurrent failures">
+        <classes>
+            <class name="com.shopflow.tests.diagnostics.ParallelReportingFailureDiagnosticCases"/>
+        </classes>
+    </test>
+</suite>

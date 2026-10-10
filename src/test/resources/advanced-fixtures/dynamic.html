@@ -1,0 +1,12 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Advanced Dynamic Content</title><link rel="stylesheet" href="css/styles.css"></head><body><main>
+<h1>Dynamic practice</h1>
+<button id="show-later">Show later</button><p id="late-content" class="result hidden">Now visible</p>
+<button id="load-content">Load content</button><p id="loading" class="result hidden">Loading...</p><p id="loaded-content" class="result hidden">Content loaded</p>
+<button id="replace-element">Replace element</button><p id="replaceable" data-version="1" class="result">Version 1</p>
+<button id="enable-later">Enable later</button><button id="delayed-button" disabled>Delayed action</button><p id="enable-status" class="result">Disabled</p>
+<script>
+document.getElementById('show-later').onclick=()=>setTimeout(()=>document.getElementById('late-content').classList.remove('hidden'),250);
+document.getElementById('load-content').onclick=()=>{const l=document.getElementById('loading');l.classList.remove('hidden');setTimeout(()=>{l.classList.add('hidden');document.getElementById('loaded-content').classList.remove('hidden');},300);};
+document.getElementById('replace-element').onclick=()=>setTimeout(()=>{const old=document.getElementById('replaceable'), fresh=old.cloneNode();fresh.dataset.version='2';fresh.textContent='Version 2';old.replaceWith(fresh);},250);
+document.getElementById('enable-later').onclick=()=>setTimeout(()=>{document.getElementById('delayed-button').disabled=false;document.getElementById('enable-status').textContent='Enabled';},250);
+</script></main></body></html>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.1.dtd">
+<suite name="ShopFlow Parallel Smoke" verbose="1" parallel="classes" thread-count="3"
+       data-provider-thread-count="3" use-global-thread-pool="true"
+       output-directory="target/testng-reports/parallel-smoke">
+    <test name="Critical flows on isolated Chrome sessions">
+        <groups><run><include name="smoke"/></run></groups>
+        <classes>
+            <class name="com.shopflow.tests.FirstLoginTest"/>
+            <class name="com.shopflow.tests.LoginTest"/>
+            <class name="com.shopflow.tests.ProductTest"/>
+            <class name="com.shopflow.tests.CartTest"/>
+            <class name="com.shopflow.tests.CheckoutTest"/>
+        </classes>
+    </test>
+</suite>

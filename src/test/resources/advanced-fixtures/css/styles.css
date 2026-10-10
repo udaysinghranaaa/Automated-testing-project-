@@ -1,0 +1,9 @@
+:root { font-family: Segoe UI, Arial, sans-serif; color: #172033; background: #eef2f7; }
+body { margin: 0 auto; max-width: 960px; padding: 32px; }
+main, section { background: white; border-radius: 12px; padding: 24px; margin: 16px 0; box-shadow: 0 4px 18px #23304a18; }
+button, select, input { font: inherit; margin: 6px; padding: 10px 14px; }
+button { cursor: pointer; background: #1769e0; border: 0; border-radius: 6px; color: white; }
+.result { min-height: 24px; padding: 10px; border-left: 4px solid #1769e0; background: #edf5ff; }
+.box { border: 2px solid #9aa8bd; border-radius: 8px; padding: 20px; margin: 12px 0; }
+.hidden { display: none; }
+iframe { width: 90%; height: 220px; border: 2px solid #1769e0; }

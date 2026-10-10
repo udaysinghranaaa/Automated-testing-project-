@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="ShopFlow Login" verbose="1" output-directory="target/testng-reports/login">
+    <test name="Login module">
+        <groups><run><include name="login"/></run></groups>
+        <classes>
+            <class name="com.shopflow.tests.FirstLoginTest"/>
+            <class name="com.shopflow.tests.LoginTest"/>
+            <class name="com.shopflow.tests.DataDrivenLoginCases"/>
+        </classes>
+    </test>
+</suite>

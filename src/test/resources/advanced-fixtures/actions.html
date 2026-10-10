@@ -1,0 +1,15 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Advanced Actions</title><link rel="stylesheet" href="css/styles.css"></head><body><main>
+<h1>Actions practice</h1>
+<div id="hover-target" class="box">Hover here <span id="tooltip" class="hidden">Tooltip visible</span></div>
+<button id="double-click">Double click</button><p id="double-status" class="result">Count: 0</p>
+<div id="context-target" class="box">Right click here</div><p id="context-status" class="result">Context ready</p>
+<div id="drag-source" class="box" draggable="true">Drag source</div><div id="drop-target" class="box">Drop target</div><p id="drag-status" class="result">Drag ready</p>
+<button id="hold-target">Hold mouse</button><p id="hold-status" class="result">Hold ready</p>
+<script>
+let count=0; document.getElementById('hover-target').onmouseenter=()=>document.getElementById('tooltip').classList.remove('hidden');
+document.getElementById('double-click').ondblclick=()=>document.getElementById('double-status').textContent='Count: '+(++count);
+document.getElementById('context-target').oncontextmenu=e=>{e.preventDefault();document.getElementById('context-status').textContent='Context menu requested';};
+const source=document.getElementById('drag-source'), target=document.getElementById('drop-target');
+source.ondragstart=e=>{e.dataTransfer.setData('text/plain','shopflow');}; target.ondragover=e=>e.preventDefault(); target.ondrop=e=>{e.preventDefault();document.getElementById('drag-status').textContent='Dropped successfully';};
+const hold=document.getElementById('hold-target'); hold.onmousedown=()=>document.getElementById('hold-status').textContent='Holding'; hold.onmouseup=()=>document.getElementById('hold-status').textContent='Released';
+</script></main></body></html>

@@ -1,0 +1,9 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Advanced Keyboard</title><link rel="stylesheet" href="css/styles.css"></head><body><main>
+<h1>Keyboard practice</h1>
+<input id="editor" value="Original value"><input id="first-field" placeholder="First"><input id="second-field" placeholder="Second">
+<form id="enter-form"><input id="submit-field" name="query"><button id="submit-button">Submit</button></form>
+<input id="modified-input"><p id="keyboard-status" class="result">Keyboard ready</p>
+<script>
+document.getElementById('enter-form').onsubmit=e=>{e.preventDefault();document.getElementById('keyboard-status').textContent='Submitted: '+document.getElementById('submit-field').value;};
+document.getElementById('modified-input').oninput=e=>document.getElementById('keyboard-status').textContent=e.target.value;
+</script></main></body></html>

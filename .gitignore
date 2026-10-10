@@ -1,0 +1,40 @@
+# Maven build output
+target/
+
+# IDE settings
+.idea/
+.vscode/
+*.iml
+.classpath
+.project
+.settings/
+
+# Operating-system files
+.DS_Store
+Thumbs.db
+
+# Test and runtime artifacts
+*.log
+test-output/
+surefire-reports/
+artifacts/
+shopflow-reports/
+screenshots/
+
+# Local dependency caches and browser-session data
+.m2/
+browser-profiles/
+chrome-profile/
+edge-profile/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Local environment files
+.env
+*.local
+*.pem
+*.key
+credentials.*
+secrets.*

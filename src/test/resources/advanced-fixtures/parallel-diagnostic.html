@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Parallel diagnostic</title>
+  <style>
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; color: white;
+      font: 700 64px/1.2 system-ui, sans-serif; }
+  </style>
+</head>
+<body>
+  <main id="marker">parallel diagnostic</main>
+  <script>
+    const query = new URLSearchParams(location.search);
+    const marker = query.get('marker') || 'unknown-worker';
+    const color = query.get('color') || '374151';
+    document.title = marker;
+    document.body.style.backgroundColor = `#${color}`;
+    document.getElementById('marker').textContent = marker;
+  </script>
+</body>
+</html>

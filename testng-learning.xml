@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="ShopFlow TestNG Learning" verbose="2" output-directory="target/testng-reports/learning">
+    <test name="Framework concepts">
+        <groups><run><include name="learning"/></run></groups>
+        <classes>
+            <class name="com.shopflow.learning.testng.LifecycleLearningExamples"/>
+            <class name="com.shopflow.learning.testng.AssertionDemo"/>
+            <class name="com.shopflow.learning.testng.ExecutionOrderLearningExamples"/>
+        </classes>
+    </test>
+</suite>

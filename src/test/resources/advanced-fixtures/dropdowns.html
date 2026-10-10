@@ -1,0 +1,10 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Advanced Dropdowns</title><link rel="stylesheet" href="css/styles.css"></head><body><main>
+<h1>Dropdown practice</h1>
+<select id="native-select"><option value="">Choose</option><option value="alpha">Alpha</option><option value="beta">Beta</option></select>
+<select id="multi-select" multiple><option value="red">Red</option><option value="green">Green</option><option value="blue">Blue</option></select>
+<button id="custom-trigger" aria-expanded="false">Choose custom</button><div id="custom-options" class="hidden"><button data-value="one">One</button><button data-value="two">Two</button></div>
+<p id="custom-status" class="result">Nothing selected</p>
+<script>
+const trigger=document.getElementById('custom-trigger'), options=document.getElementById('custom-options'); trigger.onclick=()=>{options.classList.remove('hidden');trigger.setAttribute('aria-expanded','true');};
+options.onclick=e=>{if(e.target.dataset.value){document.getElementById('custom-status').textContent=e.target.dataset.value;options.classList.add('hidden');trigger.setAttribute('aria-expanded','false');}};
+</script></main></body></html>

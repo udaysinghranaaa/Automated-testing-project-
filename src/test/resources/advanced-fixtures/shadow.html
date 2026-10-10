@@ -1,0 +1,4 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Advanced Shadow DOM</title><link rel="stylesheet" href="css/styles.css"></head><body><main>
+<h1>Shadow DOM practice</h1><div id="shadow-host"></div>
+<script>const root=document.getElementById('shadow-host').attachShadow({mode:'open'});root.innerHTML='<button id="shadow-button">Shadow action</button><p id="shadow-status">Shadow ready</p>';root.getElementById('shadow-button').onclick=()=>root.getElementById('shadow-status').textContent='Shadow clicked';</script>
+</main></body></html>

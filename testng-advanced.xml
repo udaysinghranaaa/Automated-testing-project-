@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="ShopFlow Advanced Selenium" verbose="1" output-directory="target/testng-reports/advanced">
+    <test name="Advanced browser interactions">
+        <groups><run><include name="advanced"/></run></groups>
+        <classes>
+            <class name="com.shopflow.tests.advanced.AlertsAdvancedCases"/>
+            <class name="com.shopflow.tests.advanced.FramesAdvancedCases"/>
+            <class name="com.shopflow.tests.advanced.WindowsAdvancedCases"/>
+            <class name="com.shopflow.tests.advanced.ActionsAdvancedCases"/>
+            <class name="com.shopflow.tests.advanced.KeyboardAdvancedCases"/>
+            <class name="com.shopflow.tests.advanced.DropdownsAdvancedCases"/>
+            <class name="com.shopflow.tests.advanced.DynamicAdvancedCases"/>
+            <class name="com.shopflow.tests.advanced.FileUploadAdvancedCases"/>
+            <class name="com.shopflow.tests.advanced.ShadowDomAdvancedCases"/>
+            <class name="com.shopflow.tests.advanced.ScrollingAdvancedCases"/>
+        </classes>
+    </test>
+</suite>
